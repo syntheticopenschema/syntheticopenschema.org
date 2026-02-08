@@ -76,4 +76,4 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           echo "🚀 Deploying to GitHub Pages..."
-          uv run mkdocs gh-deploy --force --message "Deploy {sha} from {branch}"
+          uv run mkdocs gh-deploy --force --message "Deploy {sha}"
