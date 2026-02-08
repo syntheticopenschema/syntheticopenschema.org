@@ -71,9 +71,9 @@ jobs:
       - name: Build site
         run: |
           echo "🔨 Building site with MkDocs..."
-          mkdocs build --verbose
+          uv run mkdocs build --verbose
 
       - name: Deploy to GitHub Pages
         run: |
           echo "🚀 Deploying to GitHub Pages..."
-          mkdocs gh-deploy --force --message "Deploy {sha} from {branch}"
+          uv run mkdocs gh-deploy --force --message "Deploy {sha} from {branch}"
