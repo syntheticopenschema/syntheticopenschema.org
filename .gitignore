@@ -1,0 +1,31 @@
+# MkDocs build output
+site/
+
+# Spec docs (auto-generated at build time from spec repo)
+docs/specification/v1/
+docs/specification/browser-v1/
+docs/specification/policy/
+spec-repo/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep these custom files (not auto-generated)
+!docs/specification/index.md

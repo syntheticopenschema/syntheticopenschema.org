@@ -1,0 +1,81 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Rebuild daily at 2am UTC to catch spec updates
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual trigger
+  repository_dispatch:
+    types: [spec-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout spec repo
+        uses: actions/checkout@v4
+        with:
+          repository: syntheticopenschema/spec
+          path: spec-repo
+          ref: main
+
+      - name: Copy spec docs to website
+        run: |
+          echo "📚 Copying specification docs from spec repo..."
+
+          # Create directory structure
+          mkdir -p docs/specification/v1
+          mkdir -p docs/specification/browser-v1
+          mkdir -p docs/specification/policy
+
+          # Copy v1 core API docs
+          echo "  → Copying v1 API docs..."
+          cp spec-repo/v1/*.md docs/specification/v1/
+
+          # Copy browser/v1 API docs
+          echo "  → Copying browser/v1 API docs..."
+          cp spec-repo/browser/v1/*.md docs/specification/browser-v1/
+
+          # Copy policy/meta docs
+          echo "  → Copying policy docs..."
+          cp spec-repo/glossary.md docs/specification/policy/
+          cp spec-repo/versioning.md docs/specification/policy/
+          cp spec-repo/compatibility.md docs/specification/policy/
+
+          echo "✅ Spec docs copied successfully"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          echo "📦 Installing dependencies with uv..."
+          uv sync
+
+      - name: Build site
+        run: |
+          echo "🔨 Building site with MkDocs..."
+          mkdocs build --verbose
+
+      - name: Deploy to GitHub Pages
+        run: |
+          echo "🚀 Deploying to GitHub Pages..."
+          mkdocs gh-deploy --force --message "Deploy {sha} from {branch}"

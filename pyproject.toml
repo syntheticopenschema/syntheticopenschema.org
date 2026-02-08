@@ -1,0 +1,50 @@
+[project]
+name = "syntheticopenschema-org"
+version = "1.0.0"
+description = "Official documentation website for Synthetic Open Schema"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Ideatives Inc.", email = "info@ideatives.com" }
+]
+maintainers = [
+    { name = "Darwin Monroy", email = "darwin@ideatives.com" }
+]
+keywords = [
+    "synthetic-monitoring",
+    "documentation",
+    "mkdocs",
+    "specification"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation"
+]
+
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+    "pymdown-extensions>=10.7"
+]
+
+[project.urls]
+Homepage = "https://syntheticopenschema.org"
+Documentation = "https://syntheticopenschema.org"
+Repository = "https://github.com/syntheticopenschema/syntheticopenschema.org"
+Changelog = "https://github.com/syntheticopenschema/syntheticopenschema.org/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/syntheticopenschema/syntheticopenschema.org/issues"
+"Spec Repository" = "https://github.com/syntheticopenschema/spec"
+
+[tool.uv]
+dev-dependencies = []
+
+[tool.uv.sources]

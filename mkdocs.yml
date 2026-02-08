@@ -1,0 +1,144 @@
+site_name: Synthetic Open Schema
+site_url: https://syntheticopenschema.org
+site_description: Open, vendor-neutral specification for portable synthetic monitoring checks
+site_author: Ideatives Inc.
+
+# Dev server configuration (optional - override with --dev-addr)
+# dev_addr: '127.0.0.1:3000'
+
+repo_url: https://github.com/syntheticopenschema/spec
+repo_name: syntheticopenschema/spec
+edit_uri: ""
+
+copyright: Copyright &copy; 2024-2026 Ideatives Inc.
+
+theme:
+  name: material
+  # custom_dir: overrides  # Optional: for theme overrides
+  # logo: assets/logo.svg  # Optional: add logo later
+  # favicon: assets/favicon.ico  # Optional: add favicon later
+  palette:
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+plugins:
+  - search:
+      lang: en
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+      fallback_to_build_date: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Specification:
+    - Overview: specification/index.md
+    - v1 API:
+      - Overview: specification/v1/_index.md
+      - Base Model: specification/v1/check.md
+      - Common Types: specification/v1/common.md
+      - HttpCheck: specification/v1/http.md
+      - TcpCheck: specification/v1/tcp.md
+      - TlsCheck: specification/v1/tls.md
+      - DnsCheck: specification/v1/dns.md
+      - DomainCheck: specification/v1/domain.md
+    - browser/v1 API:
+      - Overview: specification/browser-v1/_index.md
+      - Common Types: specification/browser-v1/common.md
+      - LoadCheck: specification/browser-v1/load_check.md
+      - ScriptedCheck: specification/browser-v1/scripted_check.md
+    - Policy:
+      - Glossary: specification/policy/glossary.md
+      - Versioning: specification/policy/versioning.md
+      - Compatibility: specification/policy/compatibility.md
+  - Examples: examples.md
+  - Implementations: implementations.md
+
+extra:
+  version:
+    provider: mike
+    default: stable
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/syntheticopenschema
+      name: Synthetic Open Schema on GitHub
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback!
+
+extra_css:
+  - stylesheets/extra.css
